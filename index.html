@@ -97,12 +97,14 @@
             
             <div class="visual-interactive">
                 <div class="sat-image-wrapper">
-                    <!-- Placeholder for interactive demo -->
-                    <div class="satellite-mockup">
-                        <div class="cnn-filter" id="moving-filter"></div>
+                    <p style="text-align: center; margin-bottom: 10px; font-weight: 600; color: var(--accent-blue); font-size: 0.9rem;">Pasa el mouse para aplicar el filtro (Kernel)</p>
+                    <div class="interactive-grid-container" id="interactive-grid">
+                        <!-- JS will inject pixel cells here -->
+                        <div class="cnn-filter-interactive" id="hover-filter"></div>
                     </div>
-                    <div class="filter-output">
-                        <span id="output-text">Escaneando imagen...</span>
+                    <div class="filter-output" style="text-align: left;">
+                        <span id="output-text" style="display:block; text-align:center;">Resultado: 0</span>
+                        <div id="math-details" style="font-family: monospace; font-size: 0.85rem; margin-top: 10px; color: var(--text-secondary); line-height: 1.4;">Acerca el mouse a la cuadrícula para ver el cálculo matemático en tiempo real...</div>
                     </div>
                 </div>
             </div>
@@ -156,35 +158,10 @@
                 <div class="card-icon">🔍</div>
                 <h3 style="color: #fff;">1. Convolución (Buscando el Patrón)</h3>
                 
-                <!-- Demostración visual de la matemática -->
-                <div class="convolution-demo">
-                    <div style="text-align:center;">
-                        <span style="font-size:0.8rem; color:#a0a0b8; display:block; margin-bottom:5px;">Píxeles (Imagen)</span>
-                        <div class="demo-grid image-grid">
-                            <div>1</div><div style="background:#ddd;">0</div><div>1</div>
-                            <div style="background:#ddd;">0</div><div>1</div><div style="background:#ddd;">0</div>
-                            <div>1</div><div style="background:#ddd;">0</div><div>1</div>
-                        </div>
-                    </div>
-                    <div class="demo-operator">×</div>
-                    <div style="text-align:center;">
-                        <span style="font-size:0.8rem; color:#a0a0b8; display:block; margin-bottom:5px;">Molde (Filtro)</span>
-                        <div class="demo-grid filter-grid">
-                            <div>1</div><div>0</div><div>0</div>
-                            <div>0</div><div>1</div><div>0</div>
-                            <div>0</div><div>0</div><div>1</div>
-                        </div>
-                    </div>
-                    <div class="demo-operator">=</div>
-                    <div class="demo-result">
-                        (1x1) + (0x0) + (1x0) +<br>
-                        (0x0) + (1x1) + (0x0) +<br>
-                        (1x0) + (0x0) + (1x1)<br>
-                        <strong style="font-size:1.2rem; color:#fff;">Resultado = 3</strong>
-                    </div>
+                <div class="math-formula" style="font-size: 1.1rem; color: var(--accent-blue); margin: 1rem 0; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px; text-align: center;">
+                    <strong>Multiplicar y Sumar</strong> para ver qué tanto se parecen.
                 </div>
-
-                <p style="color: #d0d0e0;"><strong>En palabras simples:</strong> Imagina que la "lupa" (el filtro) es como un molde o plantilla de la forma que estás buscando (ej. una línea diagonal). La computadora superpone ese molde sobre los píxeles de la imagen. <br><br><strong>El proceso visual:</strong> Multiplica cada cuadrito de la imagen por el molde y <strong>suma todo</strong>. Si el resultado final es alto (como el "3" del ejemplo), la computadora grita <em>"¡Bingo! Aquí encontré el patrón"</em>.</p>
+                <p style="color: #d0d0e0;"><strong>En palabras simples:</strong> Imagina que la "lupa" (el filtro) es como un molde o plantilla de la forma que estás buscando (ej. una línea diagonal). La computadora superpone ese molde sobre una parte de la imagen. <br><br><strong>El resultado:</strong> Hace multiplicaciones y sumas. Si el número final es muy alto, la computadora grita <em>"¡Bingo! Aquí encontré la forma del molde"</em>. Si es bajo, sabe que ahí no hay nada interesante. (Pruébalo tú mismo en la cuadrícula interactiva de arriba).</p>
             </div>
             
             <!-- ReLU Card -->

@@ -1,60 +1,110 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Interactive CNN Filter Animation Logic
-    const filter = document.getElementById('moving-filter');
+    // Interactive CNN Grid Logic
+    const gridContainer = document.getElementById('interactive-grid');
+    const hoverFilter = document.getElementById('hover-filter');
     const outputText = document.getElementById('output-text');
+    const mathDetails = document.getElementById('math-details');
     const stepItems = document.querySelectorAll('.step-item');
     
-    // Positions for the filter to move to simulate scanning
-    const positions = [
-        { top: '10%', left: '10%' },
-        { top: '10%', left: '50%' },
-        { top: '10%', left: '80%' },
-        { top: '50%', left: '10%' },
-        { top: '50%', left: '50%' },
-        { top: '50%', left: '80%' },
-        { top: '80%', left: '10%' },
-        { top: '80%', left: '50%' },
-        { top: '80%', left: '80%' },
+    const gridSize = 6;
+    const filterSize = 3;
+    let cells = [];
+    
+    // 3x3 Filter weights (Detector de bordes verticales simple)
+    const filterWeights = [
+        [1, 0, -1],
+        [1, 0, -1],
+        [1, 0, -1]
     ];
     
-    // Output messages to simulate extraction phases
-    const messages = [
-        "Fase 1: Extrayendo bordes y líneas...",
-        "Fase 1: Identificando contrastes...",
-        "Fase 2: Combinando formas geométricas...",
-        "Fase 2: Detectando texturas urbanas...",
-        "Fase 2: Analizando patrones de vegetación...",
-        "Fase 3: Clasificando 'Área Residencial' [Confianza: 92%]",
-        "Fase 3: Detectando 'Red de Carreteras' [Confianza: 88%]",
-        "Fase 3: Clasificando 'Cuerpo de Agua' [Confianza: 95%]"
-    ];
+    if (gridContainer) {
+        // Imagen mock de 6x6 (ej: una calle o borde en el centro)
+        const imageData = [
+            [0,0,1,1,0,0],
+            [0,0,1,1,0,0],
+            [0,0,1,1,0,0],
+            [0,1,1,1,1,0],
+            [0,1,1,1,1,0],
+            [0,0,0,0,0,0]
+        ];
 
-    let currentIndex = 0;
-
-    function moveFilter() {
-        if (!filter) return;
+        for (let y = 0; y < gridSize; y++) {
+            for (let x = 0; x < gridSize; x++) {
+                const cell = document.createElement('div');
+                cell.className = 'grid-cell';
+                cell.textContent = imageData[y][x];
+                cell.dataset.x = x;
+                cell.dataset.y = y;
+                gridContainer.appendChild(cell);
+                cells.push(cell);
+            }
+        }
         
-        // Move filter
-        const pos = positions[currentIndex % positions.length];
-        filter.style.top = pos.top;
-        filter.style.left = pos.left;
+        // Volver a añadir el div del hover-filter
+        if(hoverFilter) gridContainer.appendChild(hoverFilter);
         
-        // Update text
-        outputText.textContent = messages[currentIndex % messages.length];
+        gridContainer.addEventListener('mousemove', (e) => {
+            const cell = e.target.closest('.grid-cell');
+            if (!cell) return;
+            
+            const cx = parseInt(cell.dataset.x);
+            const cy = parseInt(cell.dataset.y);
+            
+            // Mantener el filtro de 3x3 dentro del grid de 6x6
+            const fx = Math.min(Math.max(cx - 1, 0), gridSize - filterSize);
+            const fy = Math.min(Math.max(cy - 1, 0), gridSize - filterSize);
+            
+            if(hoverFilter) {
+                hoverFilter.style.display = 'block';
+                const leftPct = (fx / gridSize) * 100;
+                const topPct = (fy / gridSize) * 100;
+                hoverFilter.style.left = `calc(${leftPct}%)`;
+                hoverFilter.style.top = `calc(${topPct}%)`;
+            }
+            
+            cells.forEach(c => c.classList.remove('highlight'));
+            
+            let sum = 0;
+            let mathString = "";
+            
+            for (let fy_offset = 0; fy_offset < filterSize; fy_offset++) {
+                for (let fx_offset = 0; fx_offset < filterSize; fx_offset++) {
+                    const px = fx + fx_offset;
+                    const py = fy + fy_offset;
+                    const targetCell = cells[py * gridSize + px];
+                    targetCell.classList.add('highlight');
+                    
+                    const pixelVal = imageData[py][px];
+                    const weightVal = filterWeights[fy_offset][fx_offset];
+                    const product = pixelVal * weightVal;
+                    sum += product;
+                    
+                    mathString += `<span style="display:inline-block; width:60px;">(${pixelVal}×${weightVal})</span> ` + (fx_offset===2 ? "" : " + ");
+                }
+                mathString += "<br>";
+            }
+            
+            if(outputText) {
+                outputText.innerHTML = `Resultado de Lupa = <strong style="color:var(--accent-purple); font-size:1.3rem;">${sum}</strong>`;
+            }
+            if(mathDetails) {
+                mathDetails.innerHTML = `${mathString}`;
+            }
+            
+            // Iluminar los pasos didácticos según el nivel de activación
+            stepItems.forEach(item => item.classList.remove('active'));
+            if(sum >= 2 && stepItems[1]) stepItems[1].classList.add('active'); // Borde fuerte
+            else if(stepItems[0]) stepItems[0].classList.add('active'); // Piezas sueltas
+        });
         
-        // Highlight active step based on message phase
-        const phase = messages[currentIndex % messages.length].charAt(5); // get the number from "Fase X"
-        
-        stepItems.forEach(item => item.classList.remove('active'));
-        if (phase === '1' && stepItems[0]) stepItems[0].classList.add('active');
-        if (phase === '2' && stepItems[1]) stepItems[1].classList.add('active');
-        if (phase === '3' && stepItems[2]) stepItems[2].classList.add('active');
-
-        currentIndex++;
+        gridContainer.addEventListener('mouseleave', () => {
+            if(hoverFilter) hoverFilter.style.display = 'none';
+            cells.forEach(c => c.classList.remove('highlight'));
+            if(outputText) outputText.innerHTML = "Resultado: <strong style='font-size:1.3rem;'>0</strong>";
+            if(mathDetails) mathDetails.textContent = "Acerca el mouse a la cuadrícula para ver el cálculo matemático en tiempo real...";
+            stepItems.forEach(item => item.classList.remove('active'));
+        });
     }
-
-    // Start scanning animation
-    setInterval(moveFilter, 2000);
     
     // Smooth scrolling for navigation
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
