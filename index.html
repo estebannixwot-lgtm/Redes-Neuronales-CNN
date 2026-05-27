@@ -146,29 +146,29 @@
     <!-- Fundamento Matemático Section -->
     <section id="matematica" class="section-matematica" style="background-color: #1a1a2e; color: #fff;">
         <div class="section-header">
-            <h2 style="color: #fff;">El Motor <span class="gradient-text">Matemático</span></h2>
-            <p style="color: #a0a0b8;">Las dos operaciones que hacen posible la magia de las CNN</p>
+            <h2 style="color: #fff;">El Motor <span class="gradient-text">Matemático</span> (Explicado Fácil)</h2>
+            <p style="color: #a0a0b8;">No necesitas ser un genio en matemáticas para entender cómo funciona por dentro</p>
         </div>
         
         <div class="cards-grid">
             <!-- Convolución Card -->
             <div class="glass-card math-card" style="background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.1);">
-                <div class="card-icon">✖️➕</div>
-                <h3 style="color: #fff;">1. La Operación de Convolución</h3>
-                <div class="math-formula" style="font-family: monospace; font-size: 1.2rem; color: var(--accent-blue); margin: 1rem 0; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px; text-align: center;">
-                    (Píxel × Lupa) + (Píxel × Lupa) ...
+                <div class="card-icon">🔍</div>
+                <h3 style="color: #fff;">1. Convolución (Buscando el Patrón)</h3>
+                <div class="math-formula" style="font-size: 1.1rem; color: var(--accent-blue); margin: 1rem 0; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px; text-align: center;">
+                    <strong>Multiplicar y Sumar</strong> para ver qué tanto se parecen.
                 </div>
-                <p style="color: #d0d0e0;">Es la base de la "lupa". La red superpone su filtro matemático sobre la imagen satelital. Multiplica el valor de cada píxel por el valor del filtro y luego <strong>suma</strong> todos los resultados. Este simple producto escalar es lo que le permite extraer bordes y formas de manera eficiente.</p>
+                <p style="color: #d0d0e0;"><strong>En palabras simples:</strong> Imagina que la "lupa" (el filtro) es como un molde o plantilla de la forma que estás buscando (ej. una línea recta). La computadora superpone ese molde sobre una parte de la imagen. <br><br><strong>El resultado:</strong> Hace multiplicaciones y sumas. Si el número final es muy alto, la computadora grita <em>"¡Bingo! Aquí encontré la forma del molde"</em>. Si es bajo, sabe que ahí no hay nada interesante.</p>
             </div>
             
             <!-- ReLU Card -->
             <div class="glass-card math-card" style="background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.1);">
-                <div class="card-icon">📈</div>
-                <h3 style="color: #fff;">2. Función de Activación (ReLU)</h3>
-                <div class="math-formula" style="font-family: monospace; font-size: 1.2rem; color: var(--accent-purple); margin: 1rem 0; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px; text-align: center;">
-                    f(x) = max(0, x)
+                <div class="card-icon">🚦</div>
+                <h3 style="color: #fff;">2. ReLU (El Semáforo de Positividad)</h3>
+                <div class="math-formula" style="font-size: 1.1rem; color: var(--accent-purple); margin: 1rem 0; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px; text-align: center;">
+                    Si el número es negativo ➡️ <strong>0</strong> (Se apaga)<br>Si es positivo ➡️ <strong>Lo deja pasar</strong>
                 </div>
-                <p style="color: #d0d0e0;">La Unidad Lineal Rectificada (ReLU) entra en acción después de la convolución. Su lógica es simple pero poderosa: si el resultado matemático es negativo, lo convierte en un <strong style="color:var(--accent-purple);">0</strong> (lo ignora). Si es positivo, lo deja pasar. Esto rompe la "linealidad" y le permite a la red aprender problemas muy complejos, como diferenciar vegetación de construcciones.</p>
+                <p style="color: #d0d0e0;"><strong>En palabras simples:</strong> Después de multiplicar y sumar, a veces el resultado da números negativos (ruido visual, nubes, cosas que no sirven). La función ReLU (Rectified Linear Unit) es un portero de discoteca muy estricto.<br><br><strong>El resultado:</strong> Todo número negativo lo convierte en cero (lo apaga). Solo deja pasar la información útil (positiva). Así es como la red logra "apagar" el fondo inútil y "encender" brillante solo lo que nos importa, como un edificio.</p>
             </div>
         </div>
     </section>
