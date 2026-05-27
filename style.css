@@ -282,51 +282,67 @@ section {
 .interactive-grid-container {
     width: 100%;
     aspect-ratio: 1;
-    background: #1a1a2e;
+    background: #f0f4f8; /* Color de fondo claro como en la imagen */
     border-radius: 12px;
     border: 1px solid var(--glass-border);
     position: relative;
     overflow: hidden;
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    gap: 1px;
-    padding: 2px;
+    grid-template-columns: repeat(12, 1fr); /* Más celdas para que se vea como una cuadrícula fina */
+    grid-template-rows: repeat(12, 1fr);
+    gap: 0;
     cursor: crosshair;
 }
 
 .grid-cell {
-    background: #f8f9fa;
+    background: transparent; /* Fondo transparente para ver el contenedor */
+    border: 1px solid rgba(0, 0, 0, 0.05); /* Cuadrícula sutil */
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #5c6275;
+    font-size: 0.7rem;
+    color: transparent; /* Ocultar números para que se vea como la imagen */
     user-select: none;
-    transition: background-color 0.1s, color 0.1s;
+    transition: background-color 0.2s, box-shadow 0.2s;
 }
 
 .grid-cell.highlight {
-    background: var(--accent-blue);
-    color: #fff;
+    background: rgba(255, 0, 123, 0.1); /* Resaltado sutil al pasar la lupa */
+}
+
+/* Efecto cuando encuentra el patrón */
+.interactive-grid-container.pattern-found {
+    animation: pulse-success 0.5s ease;
+}
+
+@keyframes pulse-success {
+    0% { box-shadow: inset 0 0 20px rgba(0,0,0,0.05); }
+    50% { box-shadow: inset 0 0 50px rgba(0, 119, 255, 0.3); }
+    100% { box-shadow: inset 0 0 20px rgba(0,0,0,0.05); }
 }
 
 .cnn-filter-interactive {
     position: absolute;
-    width: calc(100% / 2 - 2px);
-    height: calc(100% / 2 - 2px);
-    border: 3px solid var(--accent-purple);
-    background: rgba(255, 0, 123, 0.2);
+    width: calc(100% / 4); /* Ajustado para matriz 12x12 (el filtro será 3x3 celdas) */
+    height: calc(100% / 4);
+    border: 2px solid #ff007b; /* Borde rosado de la imagen */
+    background: rgba(255, 0, 123, 0.15); /* Relleno rosado sutil */
     box-shadow: 0 0 15px rgba(255, 0, 123, 0.4);
     pointer-events: none;
     top: 0;
     left: 0;
     display: none;
-    transition: top 0.1s, left 0.1s;
+    transition: top 0.1s linear, left 0.1s linear, background 0.2s, box-shadow 0.2s, border-color 0.2s;
     z-index: 10;
     border-radius: 4px;
+}
+
+/* Estado cuando la lupa "detecta" el patrón */
+.cnn-filter-interactive.active-pattern {
+    background: rgba(0, 119, 255, 0.3);
+    border-color: #0077ff;
+    box-shadow: 0 0 25px rgba(0, 119, 255, 0.6);
 }
 
 .filter-output {

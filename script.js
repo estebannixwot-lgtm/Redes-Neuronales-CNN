@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const mathDetails = document.getElementById('math-details');
     const stepItems = document.querySelectorAll('.step-item');
     
-    const gridSize = 6;
-    const filterSize = 3;
+    const gridSize = 12;
+    const filterSize = 3; // Lupa de 3x3 que ocupará 3x3 celdas visualmente
     let cells = [];
     
     // 3x3 Filter weights (Detector de bordes verticales simple)
@@ -18,20 +18,24 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
     
     if (gridContainer) {
-        // Imagen mock de 6x6 (ej: una calle o borde en el centro)
-        const imageData = [
-            [0,0,1,1,0,0],
-            [0,0,1,1,0,0],
-            [0,0,1,1,0,0],
-            [0,1,1,1,1,0],
-            [0,1,1,1,1,0],
-            [0,0,0,0,0,0]
-        ];
+        // Imagen mock de 12x12
+        const imageData = Array.from({length: gridSize}, () => Array(gridSize).fill(0));
+        
+        // Dibujamos un "edificio" o forma en el medio para que lo detecte
+        for(let y=4; y<9; y++) {
+            for(let x=6; x<10; x++) {
+                imageData[y][x] = 1;
+            }
+        }
 
         for (let y = 0; y < gridSize; y++) {
             for (let x = 0; x < gridSize; x++) {
                 const cell = document.createElement('div');
                 cell.className = 'grid-cell';
+                // Añadimos un fondo oscuro si el pixel de la imagen es 1 para que el usuario intuya que hay algo ahí
+                if(imageData[y][x] === 1) {
+                    cell.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
+                }
                 cell.textContent = imageData[y][x];
                 cell.dataset.x = x;
                 cell.dataset.y = y;
@@ -50,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const cx = parseInt(cell.dataset.x);
             const cy = parseInt(cell.dataset.y);
             
-            // Mantener el filtro de 3x3 dentro del grid de 6x6
+            // Mantener el filtro de 3x3 dentro del grid de 12x12
             const fx = Math.min(Math.max(cx - 1, 0), gridSize - filterSize);
             const fy = Math.min(Math.max(cy - 1, 0), gridSize - filterSize);
             
@@ -91,6 +95,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 mathDetails.innerHTML = `${mathString}`;
             }
             
+            // Detección de patrón fuerte
+            if (sum >= 2) {
+                hoverFilter.classList.add('active-pattern');
+                gridContainer.classList.add('pattern-found');
+                if(outputText) outputText.innerHTML += ` <br><span style="color:#0077ff; font-weight:800; font-size:1.2rem;">¡Patrón Detectado!</span>`;
+            } else {
+                hoverFilter.classList.remove('active-pattern');
+                gridContainer.classList.remove('pattern-found');
+            }
+            
             // Iluminar los pasos didácticos según el nivel de activación
             stepItems.forEach(item => item.classList.remove('active'));
             if(sum >= 2 && stepItems[1]) stepItems[1].classList.add('active'); // Borde fuerte
@@ -98,7 +112,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         gridContainer.addEventListener('mouseleave', () => {
-            if(hoverFilter) hoverFilter.style.display = 'none';
+            if(hoverFilter) {
+                hoverFilter.style.display = 'none';
+                hoverFilter.classList.remove('active-pattern');
+            }
+            gridContainer.classList.remove('pattern-found');
             cells.forEach(c => c.classList.remove('highlight'));
             if(outputText) outputText.innerHTML = "Resultado: <strong style='font-size:1.3rem;'>0</strong>";
             if(mathDetails) mathDetails.textContent = "Acerca el mouse a la cuadrícula para ver el cálculo matemático en tiempo real...";
