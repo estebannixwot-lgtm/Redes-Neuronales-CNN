@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNN en GeoAI | Entendiendo nuestro mundo con IA</title>
+    <meta name="description" content="Aprende qué son las Redes Neuronales Convolucionales (CNN) y cómo se aplican en la Inteligencia Artificial Geoespacial (GeoAI).">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Mermaid JS for Mindmap -->
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ 
+          startOnLoad: true, 
+          theme: 'default', 
+          fontFamily: 'Outfit',
+          securityLevel: 'loose'
+      });
+    </script>
+    
+    <!-- d3.js for Mindmap Panning and Zooming -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="glass-nav">
+        <div class="logo">Geo<span>AI</span>.vision</div>
+        <ul class="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#explicacion">¿Qué son?</a></li>
+            <li><a href="#ejemplos">Aplicaciones</a></li>
+            <li><a href="#mapa-mental">Mapa Mental</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="inicio" class="hero">
+        <div class="hero-content">
+            <div class="badge">Inteligencia Artificial Espacial</div>
+            <h1>Redes Neuronales <br> <span class="gradient-text">Convolucionales</span> (CNN)</h1>
+            <p>Descubre cómo los algoritmos inspirados en la visión humana están transformando el análisis de imágenes satelitales y datos geográficos.</p>
+            <a href="#explicacion" class="cta-button">Explorar el concepto</a>
+        </div>
+        <div class="hero-visual">
+            <div class="globe-container">
+                <div class="scanner-line"></div>
+                <div class="grid-overlay"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Explicación Section -->
+    <section id="explicacion" class="section-didactica">
+        <div class="section-header">
+            <h2>¿Cómo funcionan? <span class="gradient-text">La Teoría de las Lupas</span></h2>
+            <p>Entendiendo la extracción de características geográficas</p>
+        </div>
+        
+        <div class="interactive-container">
+            <div class="text-content">
+                <p>Las <strong>Redes Neuronales Convolucionales (CNN)</strong> son una clase de redes neuronales artificiales de aprendizaje profundo (Deep Learning), diseñadas específicamente para procesar datos con topología de cuadrícula, como las imágenes satelitales. En lugar de analizar cada píxel de forma aislada, entienden el contexto espacial.</p>
+                <br>
+                <p>Para entenderlo, imagina que pasas una pequeña <strong>"lupa" matemática (llamada Kernel o Filtro)</strong> sistemáticamente por toda la imagen. Este proceso de escaneo es lo que se conoce como <em>convolución</em>.</p>
+                
+                <ul class="steps-list">
+                    <li class="step-item" id="step-1">
+                        <div class="step-icon">1</div>
+                        <div>
+                            <h3>Capas Iniciales (Nivel Bajo)</h3>
+                            <p>La red utiliza sus primeros filtros para detectar las características más simples y primitivas: cambios bruscos de color, contrastes, bordes horizontales y verticales, y texturas básicas del terreno.</p>
+                        </div>
+                    </li>
+                    <li class="step-item" id="step-2">
+                        <div class="step-icon">2</div>
+                        <div>
+                            <h3>Capas Intermedias (Nivel Medio)</h3>
+                            <p>A medida que la información avanza hacia adentro, la red combina los bordes simples descubiertos anteriormente para empezar a "ver" formas geométricas elementales. Aquí es donde se detectan esquinas, curvas de ríos o los contornos rectangulares de un techo.</p>
+                        </div>
+                    </li>
+                    <li class="step-item" id="step-3">
+                        <div class="step-icon">3</div>
+                        <div>
+                            <h3>Capas Profundas (Nivel Alto)</h3>
+                            <p>En las capas finales, la CNN ensambla todas las formas complejas y toma una decisión semántica. Es capaz de identificar objetos geográficos completos y clasificarlos de forma autónoma: "Este conjunto de píxeles corresponde a una zona residencial densa" o "Esto es un área agrícola".</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="visual-interactive">
+                <div class="sat-image-wrapper">
+                    <!-- Placeholder for interactive demo -->
+                    <div class="satellite-mockup">
+                        <div class="cnn-filter" id="moving-filter"></div>
+                    </div>
+                    <div class="filter-output">
+                        <span id="output-text">Escaneando imagen...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ejemplos Section -->
+    <section id="ejemplos" class="section-ejemplos">
+        <div class="section-header">
+            <h2>Aplicaciones en <span class="gradient-text">GeoAI</span></h2>
+            <p>Resolviendo problemas reales en el territorio</p>
+        </div>
+        
+        <div class="cards-grid">
+            <div class="glass-card">
+                <div class="card-icon">🌍</div>
+                <h3>Clasificación de Cobertura Terrestre (LULC)</h3>
+                <p>Las CNN pueden procesar terabytes de imágenes satelitales (como Landsat o Sentinel) para realizar un mapeo automático de zonas forestales, áreas urbanas, cuerpos de agua y cultivos. Esto es vital para el monitoreo del cambio climático, la planificación territorial y la medición de la deforestación a nivel global.</p>
+            </div>
+            
+            <div class="glass-card">
+                <div class="card-icon">🏗️</div>
+                <h3>Extracción Automática de Infraestructura</h3>
+                <p>En lugar de que un operador humano dibuje polígonos a mano, las redes neuronales pueden segmentar con alta precisión las huellas de los edificios (building footprints) y extraer redes de carreteras completas. Esto acelera radicalmente el catastro, la planeación urbana y la actualización de mapas base.</p>
+            </div>
+            
+            <div class="glass-card">
+                <div class="card-icon">🚨</div>
+                <h3>Gestión de Desastres y Evaluación de Daños</h3>
+                <p>Tras un evento catastrófico (terremotos, huracanes, inundaciones), las CNN comparan rápidamente las imágenes del "antes" y el "después" para identificar estructuras colapsadas, vías bloqueadas y áreas afectadas. Esto permite guiar a los equipos de rescate de forma muchísimo más rápida y eficiente, salvando vidas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mapa Mental Section -->
+    <section id="mapa-mental" class="section-mindmap">
+        <div class="section-header">
+            <h2>Estructura del <span class="gradient-text">Concepto</span></h2>
+            <p>Mapa mental interactivo</p>
+        </div>
+        <div class="mindmap-container glass-card">
+            <pre class="mermaid">
+mindmap
+  root((CNN en GeoAI))
+    Definición
+      Deep Learning
+      Procesamiento de Imágenes
+      Análisis Espacial
+      Topología de Cuadrícula
+    Explicación Didáctica
+      Filtros o Kernels
+      Como Lupas
+      Capas Iniciales: Bordes
+      Capas Profundas: Objetos
+      Extracción Automática
+    Aplicaciones Geoespaciales
+      Cobertura Terrestre
+        Urbano vs Rural
+        Tipos de Cultivos
+      Detección de Objetos
+        Extracción de Edificios
+        Red de Carreteras
+      Análisis de Cambios
+        Evaluación de Daños
+        Monitoreo de Deforestación
+            </pre>
+        </div>
+    </section>
+
+    <footer>
+        <p>Diseñado para sustentación académica sobre GeoAI - 2026</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

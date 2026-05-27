@@ -1,0 +1,72 @@
+# Contenido del Proyecto: CNN en GeoAI
+
+Aquí tienes el material preparado para tus entregables.
+
+## 1. Prompt para Canva Pro (Afiche)
+
+Copia y pega este prompt en la herramienta de "Texto a Imagen" de Canva o úsalo como guía para la IA generativa de diseño (Magic Design) si vas a generar una plantilla:
+
+> "Un afiche educativo moderno y tecnológico sobre Redes Neuronales Convolucionales (CNN) en GeoAI. Diseño vertical. Fondo oscuro con tonos azul profundo y verde neón brillante. En el centro, una ilustración estilizada de una cuadrícula satelital de la Tierra siendo analizada por capas de redes neuronales brillantes. Estilo de diseño flat moderno, cyberespacial y limpio. Deja espacios amplios para texto."
+
+**Estructura sugerida para los textos del afiche:**
+- **Título principal (Grande):** CNNs en GeoAI: Entendiendo nuestro mundo con IA.
+- **Subtítulo:** ¿Qué son y cómo transforman los datos espaciales?
+- **Sección 1 (Qué es):** Algoritmos de Deep Learning inspirados en la visión humana para procesar mapas e imágenes satelitales.
+- **Sección 2 (Analogía):** ¡Como mirar la Tierra con diferentes lupas para encontrar patrones, bordes y objetos complejos!
+- **Sección 3 (Aplicaciones):** Detección de bosques, extracción de infraestructura y evaluación rápida de daños tras desastres naturales.
+
+## 2. Guion para Sustentación (10 Minutos)
+
+Este guion está estructurado para que puedas hablar a un ritmo calmado, con tiempo para pausas y énfasis.
+
+**Diapositiva 1: Introducción (1.5 minutos)**
+"Buenos días a todos. Hoy vamos a hablar de una de las tecnologías más disruptivas en el análisis espacial contemporáneo: las Redes Neuronales Convolucionales, o CNNs, aplicadas a la Inteligencia Artificial Geoespacial (GeoAI). Básicamente, vamos a explorar cómo le enseñamos a las computadoras a 'ver' y comprender mapas e imágenes satelitales con una precisión casi humana."
+
+**Diapositiva 2: ¿Qué es una CNN? (2 minutos)**
+"Para entender una CNN, pensemos en la visión humana. Cuando vemos un paisaje, no analizamos cada píxel o milímetro de forma aislada; vemos formas, bordes, texturas y, al combinarlos, reconocemos objetos. Una CNN hace exactamente eso. Es una arquitectura de Deep Learning diseñada específicamente para procesar datos que tienen una topología de cuadrícula, como una imagen fotográfica, una imagen satelital o un modelo de elevación digital."
+
+**Diapositiva 3: La Explicación Didáctica - 'Las Lupas Matemáticas' (3 minutos)**
+"Imaginen que tienen una imagen satelital enorme impresa sobre una mesa. Una CNN funciona pasando repetidamente una pequeña lupa (que en matemáticas llamamos 'filtro' o 'kernel') por toda la imagen. 
+- La primera lupa busca características muy simples: bordes horizontales, bordes verticales, cambios de contraste. 
+- La siguiente capa usa otra lupa que combina esos bordes simples para buscar formas geométricas elementales.
+- Las capas más profundas usan lupas avanzadas que combinan esas formas complejas para finalmente decirnos: '¡Las características de estos píxeles corresponden a un edificio!' o '¡Esto es un río!'.
+En GeoAI, estas 'lupas' extraen las características geográficas de forma autónoma, sin necesidad de que un humano programe manualmente qué es un techo o qué es el asfalto."
+
+**Diapositiva 4: Ejemplos de Aplicación en GeoAI (2.5 minutos)**
+"¿Para qué nos sirve esto en la práctica?
+1. **Clasificación de cobertura terrestre:** Podemos ingresar imágenes satelitales masivas a una CNN entrenada, y esta mapeará automáticamente dónde hay bosque denso, área urbana, cuerpos de agua o cultivos agrícolas, permitiendo actualizar mapas a escala global casi en tiempo real.
+2. **Detección de infraestructura:** Identificar de forma automática edificios en áreas remotas, extraer la red de carreteras de una ciudad en crecimiento, o contar paneles solares.
+3. **Gestión de desastres:** Tras un huracán o terremoto, las CNNs pueden comparar imágenes del 'antes' y 'después' para clasificar el nivel de daño en las infraestructuras, lo cual guía a los equipos de rescate de forma mucho más rápida y eficiente."
+
+**Diapositiva 5: Conclusión (1 minuto)**
+"En resumen, las CNNs actúan como los 'ojos' del análisis espacial moderno en la GeoAI. Transforman inmensas cantidades de píxeles sin estructura en información geográfica estructurada, procesable y vital para la toma de decisiones estratégicas. Muchas gracias."
+
+## 3. Mapa Mental
+
+Este es el mapa mental estructurado del concepto. Lo he incluido usando sintaxis Mermaid, y este mismo diagrama estará interactivo en la página web.
+
+```mermaid
+mindmap
+  root((CNN en GeoAI))
+    Definición
+      Deep Learning
+      Procesamiento de Imágenes
+      Análisis Espacial
+      Topología de Cuadrícula
+    Explicación Didáctica
+      Filtros o Kernels
+      Como Lupas
+      Capas Iniciales: Bordes y Texturas
+      Capas Profundas: Objetos Complejos
+      Extracción Automática
+    Aplicaciones Geoespaciales
+      Cobertura Terrestre
+        Urbano vs Rural
+        Tipos de Cultivos
+      Detección de Objetos
+        Extracción de Edificios
+        Red de Carreteras
+      Análisis de Cambios
+        Evaluación de Daños
+        Monitoreo de Deforestación
+```
