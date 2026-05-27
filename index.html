@@ -34,7 +34,8 @@
         <ul class="nav-links">
             <li><a href="#inicio">Inicio</a></li>
             <li><a href="#explicacion">¿Qué son?</a></li>
-            <li><a href="#como-aprende">¿Cómo Aprenden?</a></li>
+            <li><a href="#como-aprende">Entrenamiento</a></li>
+            <li><a href="#matematica">Matemática</a></li>
             <li><a href="#ejemplos">Aplicaciones</a></li>
             <li><a href="#recursos">Recursos</a></li>
         </ul>
@@ -138,6 +139,36 @@
                 <div class="card-icon">🔄</div>
                 <h3>4. Retropropagación (Backpropagation)</h3>
                 <p>Esta es la magia: la red ajusta automáticamente los valores matemáticos de todas sus "lupas" (pesos de los filtros) hacia atrás, usando el descenso del gradiente, para que la próxima vez el error sea menor. Repite esto millones de veces hasta aprender.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fundamento Matemático Section -->
+    <section id="matematica" class="section-matematica" style="background-color: #1a1a2e; color: #fff;">
+        <div class="section-header">
+            <h2 style="color: #fff;">El Motor <span class="gradient-text">Matemático</span></h2>
+            <p style="color: #a0a0b8;">Las dos operaciones que hacen posible la magia de las CNN</p>
+        </div>
+        
+        <div class="cards-grid">
+            <!-- Convolución Card -->
+            <div class="glass-card math-card" style="background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.1);">
+                <div class="card-icon">✖️➕</div>
+                <h3 style="color: #fff;">1. La Operación de Convolución</h3>
+                <div class="math-formula" style="font-family: monospace; font-size: 1.2rem; color: var(--accent-blue); margin: 1rem 0; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px; text-align: center;">
+                    (Píxel × Lupa) + (Píxel × Lupa) ...
+                </div>
+                <p style="color: #d0d0e0;">Es la base de la "lupa". La red superpone su filtro matemático sobre la imagen satelital. Multiplica el valor de cada píxel por el valor del filtro y luego <strong>suma</strong> todos los resultados. Este simple producto escalar es lo que le permite extraer bordes y formas de manera eficiente.</p>
+            </div>
+            
+            <!-- ReLU Card -->
+            <div class="glass-card math-card" style="background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.1);">
+                <div class="card-icon">📈</div>
+                <h3 style="color: #fff;">2. Función de Activación (ReLU)</h3>
+                <div class="math-formula" style="font-family: monospace; font-size: 1.2rem; color: var(--accent-purple); margin: 1rem 0; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px; text-align: center;">
+                    f(x) = max(0, x)
+                </div>
+                <p style="color: #d0d0e0;">La Unidad Lineal Rectificada (ReLU) entra en acción después de la convolución. Su lógica es simple pero poderosa: si el resultado matemático es negativo, lo convierte en un <strong style="color:var(--accent-purple);">0</strong> (lo ignora). Si es positivo, lo deja pasar. Esto rompe la "linealidad" y le permite a la red aprender problemas muy complejos, como diferenciar vegetación de construcciones.</p>
             </div>
         </div>
     </section>
