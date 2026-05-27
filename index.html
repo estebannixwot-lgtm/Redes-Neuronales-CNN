@@ -34,8 +34,9 @@
         <ul class="nav-links">
             <li><a href="#inicio">Inicio</a></li>
             <li><a href="#explicacion">¿Qué son?</a></li>
+            <li><a href="#como-aprende">¿Cómo Aprenden?</a></li>
             <li><a href="#ejemplos">Aplicaciones</a></li>
-            <li><a href="#mapa-mental">Mapa Mental</a></li>
+            <li><a href="#recursos">Recursos</a></li>
         </ul>
     </nav>
 
@@ -107,6 +108,40 @@
         </div>
     </section>
 
+    <!-- Cómo Aprende Section -->
+    <section id="como-aprende" class="section-aprendizaje" style="background-color: #f0f4ff;">
+        <div class="section-header">
+            <h2>El Proceso de <span class="gradient-text">Entrenamiento</span></h2>
+            <p>¿Cómo se vuelve "inteligente" una CNN?</p>
+        </div>
+        
+        <div class="cards-grid">
+            <div class="glass-card" style="background: #fff;">
+                <div class="card-icon">📚</div>
+                <h3>1. Datos de Entrenamiento (Ground Truth)</h3>
+                <p>La red no nace sabiendo. Se le alimentan miles de imágenes satelitales que previamente han sido etiquetadas por expertos humanos. Por ejemplo, imágenes donde a cada píxel se le ha asignado un color indicando si es "agua", "bosque" o "ciudad".</p>
+            </div>
+            
+            <div class="glass-card" style="background: #fff;">
+                <div class="card-icon">🧠</div>
+                <h3>2. Propagación hacia adelante</h3>
+                <p>La CNN intenta adivinar qué hay en una imagen nueva pasando los datos por todas sus capas (sus "lupas"). Al principio, como sus filtros tienen valores aleatorios, sus predicciones serán completamente equivocadas.</p>
+            </div>
+            
+            <div class="glass-card" style="background: #fff;">
+                <div class="card-icon">📉</div>
+                <h3>3. Función de Pérdida (Error)</h3>
+                <p>El sistema compara la predicción de la red con la respuesta real (Ground Truth). Calcula qué tan equivocada estuvo la red mediante una ecuación matemática llamada <em>Loss Function</em> o función de pérdida.</p>
+            </div>
+
+            <div class="glass-card" style="background: #fff;">
+                <div class="card-icon">🔄</div>
+                <h3>4. Retropropagación (Backpropagation)</h3>
+                <p>Esta es la magia: la red ajusta automáticamente los valores matemáticos de todas sus "lupas" (pesos de los filtros) hacia atrás, usando el descenso del gradiente, para que la próxima vez el error sea menor. Repite esto millones de veces hasta aprender.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Ejemplos Section -->
     <section id="ejemplos" class="section-ejemplos">
         <div class="section-header">
@@ -135,14 +170,17 @@
         </div>
     </section>
 
-    <!-- Mapa Mental Section -->
-    <section id="mapa-mental" class="section-mindmap">
+    <!-- Recursos Section -->
+    <section id="recursos" class="section-recursos">
         <div class="section-header">
-            <h2>Estructura del <span class="gradient-text">Concepto</span></h2>
-            <p>Mapa mental interactivo</p>
+            <h2>Material de <span class="gradient-text">Sustentación</span></h2>
+            <p>Mapa mental interactivo y Afiche del Proyecto</p>
         </div>
-        <div class="mindmap-container glass-card">
-            <pre class="mermaid">
+        
+        <div class="resources-grid">
+            <!-- Mapa Mental -->
+            <div class="mindmap-container glass-card">
+                <pre class="mermaid">
 mindmap
   root((CNN en GeoAI))
     Definición
@@ -166,7 +204,13 @@ mindmap
       Análisis de Cambios
         Evaluación de Daños
         Monitoreo de Deforestación
-            </pre>
+                </pre>
+            </div>
+
+            <!-- Afiche PDF -->
+            <div class="pdf-container glass-card" style="padding: 0;">
+                <iframe src="Afiche_CNN_Final.pdf" title="Afiche CNN GeoAI"></iframe>
+            </div>
         </div>
     </section>
 

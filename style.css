@@ -358,7 +358,30 @@ section {
     color: var(--text-secondary);
 }
 
-/* Mindmap Section */
+/* Resources & Mindmap Section */
+.resources-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    width: 100%;
+}
+
+.pdf-container {
+    width: 100%;
+    height: 700px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow);
+    background: #ffffff;
+}
+
+.pdf-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
 .mindmap-container {
     width: 100%;
     height: 700px;
@@ -411,5 +434,8 @@ footer {
     }
     .interactive-container {
         flex-direction: column;
+    }
+    .resources-grid {
+        grid-template-columns: 1fr;
     }
 }
