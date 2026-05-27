@@ -321,6 +321,75 @@ section {
     width: 100%;
 }
 
+/* Convolution Demo Widget */
+.convolution-demo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    background: rgba(0,0,0,0.4);
+    padding: 1.5rem;
+    border-radius: 12px;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+.demo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    background: #333;
+    padding: 4px;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.demo-grid div {
+    width: 32px;
+    height: 32px;
+    background: #fff;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 800;
+    border-radius: 3px;
+}
+
+.demo-grid.filter-grid div {
+    background: var(--accent-blue);
+    color: #fff;
+}
+
+.demo-grid.filter-grid div:nth-child(2),
+.demo-grid.filter-grid div:nth-child(3),
+.demo-grid.filter-grid div:nth-child(4),
+.demo-grid.filter-grid div:nth-child(6),
+.demo-grid.filter-grid div:nth-child(7),
+.demo-grid.filter-grid div:nth-child(8) {
+    background: rgba(0, 119, 255, 0.3);
+}
+
+.demo-operator {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.demo-result {
+    font-family: monospace;
+    font-size: 0.95rem;
+    color: #00f0ff;
+    text-align: left;
+    line-height: 1.5;
+    background: rgba(0, 119, 255, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 119, 255, 0.3);
+}
+
 /* Cards Section */
 .cards-grid {
     display: grid;

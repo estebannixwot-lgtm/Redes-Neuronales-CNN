@@ -155,10 +155,36 @@
             <div class="glass-card math-card" style="background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.1);">
                 <div class="card-icon">🔍</div>
                 <h3 style="color: #fff;">1. Convolución (Buscando el Patrón)</h3>
-                <div class="math-formula" style="font-size: 1.1rem; color: var(--accent-blue); margin: 1rem 0; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px; text-align: center;">
-                    <strong>Multiplicar y Sumar</strong> para ver qué tanto se parecen.
+                
+                <!-- Demostración visual de la matemática -->
+                <div class="convolution-demo">
+                    <div style="text-align:center;">
+                        <span style="font-size:0.8rem; color:#a0a0b8; display:block; margin-bottom:5px;">Píxeles (Imagen)</span>
+                        <div class="demo-grid image-grid">
+                            <div>1</div><div style="background:#ddd;">0</div><div>1</div>
+                            <div style="background:#ddd;">0</div><div>1</div><div style="background:#ddd;">0</div>
+                            <div>1</div><div style="background:#ddd;">0</div><div>1</div>
+                        </div>
+                    </div>
+                    <div class="demo-operator">×</div>
+                    <div style="text-align:center;">
+                        <span style="font-size:0.8rem; color:#a0a0b8; display:block; margin-bottom:5px;">Molde (Filtro)</span>
+                        <div class="demo-grid filter-grid">
+                            <div>1</div><div>0</div><div>0</div>
+                            <div>0</div><div>1</div><div>0</div>
+                            <div>0</div><div>0</div><div>1</div>
+                        </div>
+                    </div>
+                    <div class="demo-operator">=</div>
+                    <div class="demo-result">
+                        (1x1) + (0x0) + (1x0) +<br>
+                        (0x0) + (1x1) + (0x0) +<br>
+                        (1x0) + (0x0) + (1x1)<br>
+                        <strong style="font-size:1.2rem; color:#fff;">Resultado = 3</strong>
+                    </div>
                 </div>
-                <p style="color: #d0d0e0;"><strong>En palabras simples:</strong> Imagina que la "lupa" (el filtro) es como un molde o plantilla de la forma que estás buscando (ej. una línea recta). La computadora superpone ese molde sobre una parte de la imagen. <br><br><strong>El resultado:</strong> Hace multiplicaciones y sumas. Si el número final es muy alto, la computadora grita <em>"¡Bingo! Aquí encontré la forma del molde"</em>. Si es bajo, sabe que ahí no hay nada interesante.</p>
+
+                <p style="color: #d0d0e0;"><strong>En palabras simples:</strong> Imagina que la "lupa" (el filtro) es como un molde o plantilla de la forma que estás buscando (ej. una línea diagonal). La computadora superpone ese molde sobre los píxeles de la imagen. <br><br><strong>El proceso visual:</strong> Multiplica cada cuadrito de la imagen por el molde y <strong>suma todo</strong>. Si el resultado final es alto (como el "3" del ejemplo), la computadora grita <em>"¡Bingo! Aquí encontré el patrón"</em>.</p>
             </div>
             
             <!-- ReLU Card -->
